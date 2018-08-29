@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Pinto.unity
+    guid: af590959a9776414da6079b41a79c512
+  - enabled: 1
+    path: Assets/Scenes/Flip.unity
+    guid: 4e52a918a02454a3297ab1d97383ff07

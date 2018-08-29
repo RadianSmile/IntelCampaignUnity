@@ -26,8 +26,10 @@ public class PintoUnit : MonoBehaviour {
     public void Drag (BaseEventData baseEvent)
     {
         var p = (PointerEventData)baseEvent;
-        transform.position = p.position; 
-
+        transform.position = p.position;
+        Debug.Log(p.position);
+        Debug.Log(Camera.main.pixelWidth);
+        Debug.Log(Camera.main.scaledPixelWidth);
     }
 
     public void EndDrag(BaseEventData baseEvent)
@@ -37,37 +39,52 @@ public class PintoUnit : MonoBehaviour {
         transform.parent = PintoController.Instance.StartZone.transform;
         var targetZones = PintoController.Instance.pintoZones.Values.ToList();
 
+        var min = 20000f;
+        var minIndex = -1;
         for (var i = 0; i < targetZones.Count; i++)
         {
             var targetPos = targetZones[i].transform.position;
             var v = Vector3.Distance(transform.position, targetPos);
+
+            Debug.LogWarning("transform.position" + transform.position);
+
             v *= PintoController.Instance.ScreenToPixel;
-            if (v < 141f)
+            Debug.LogWarning("VV" + v);
+
+            if (v < 141f && v < min)
             {
-                arrived = true;
-
-                if (targetZones[i].ocuppiedPinto != null && targetZones[i].ocuppiedPinto.GetInstanceID() != this.GetInstanceID())
-                {
-                    var originPinto = targetZones[i].ocuppiedPinto;
-                    var originPintoTargetZone = arrivedZone;
-
-                    originPinto.arrivedZone = arrivedZone;
-                    originPinto.transform.position = originPos;
-
-                    if (arrivedZone != null)
-                        originPintoTargetZone.ocuppiedPinto = originPinto;
-                }
-                else{
-                    if (arrivedZone != null){
-                        arrivedZone.ocuppiedPinto = null;
-                    }
-                }
-
-                transform.position = targetPos;
-                targetZones[i].ocuppiedPinto = this;
-                arrivedZone = targetZones[i];
-
+                min = v;
+                minIndex = i;
             }
+        }
+        if (minIndex != -1)
+        {
+            var i = minIndex;
+            var targetPos = targetZones[i].transform.position;
+
+            arrived = true;
+
+            if (targetZones[i].ocuppiedPinto != null && targetZones[i].ocuppiedPinto.GetInstanceID() != this.GetInstanceID())
+            {
+                var originPinto = targetZones[i].ocuppiedPinto;
+                var originPintoTargetZone = arrivedZone;
+
+                originPinto.arrivedZone = arrivedZone;
+                originPinto.transform.position = originPos;
+
+                if (arrivedZone != null)
+                    originPintoTargetZone.ocuppiedPinto = originPinto;
+            }
+            else{
+                if (arrivedZone != null){
+                    arrivedZone.ocuppiedPinto = null;
+                }
+            }
+
+            transform.position = targetPos;
+            targetZones[i].ocuppiedPinto = this;
+            arrivedZone = targetZones[i];
+
 
         }
         if (!arrived){

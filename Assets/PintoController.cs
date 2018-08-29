@@ -25,8 +25,13 @@ public class PintoController : MonoBehaviour
 
     private void Awake()
     {
+        
+    }
+
+    void Start()
+    {
         Instance = this;
-        ScreenToPixel = 1920 / Screen.width;
+        ScreenToPixel = 1920 / Camera.main.pixelWidth;
 
 
         //startZonePonits;
@@ -46,10 +51,6 @@ public class PintoController : MonoBehaviour
             pintoZones.Add(t.name, t);
         }
         init = true;
-    }
-
-    void Start()
-    {
 
 
         StartGame();

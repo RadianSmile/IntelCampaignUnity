@@ -24,7 +24,7 @@ public class FlipController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        ScreenToPixel = 1920 / Screen.width;
+        ScreenToPixel = 1920 / Camera.main.pixelWidth;
 
         flips = new Dictionary<string, FlipUnit>();
 
