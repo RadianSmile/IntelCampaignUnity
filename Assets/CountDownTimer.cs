@@ -10,7 +10,7 @@ public class CountDownTimer : MonoBehaviour {
     public List<Sprite> nums;
     public static CountDownTimer Instance; 
     float passedTime;
-    float totalTime = 10 ;
+    public float totalTime  ;
     bool started = false;
     private void Awake()
     {

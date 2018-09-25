@@ -639,6 +639,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 22a35dfb2e3564d3fb8eb52aa1d4354b, type: 3}
   - {fileID: 21300000, guid: e51f3fc4bd9664d899db7fd29f1be40b, type: 3}
   - {fileID: 21300000, guid: ed7c5ef98623e45ba9d70c0479915c0e, type: 3}
+  totalTime: 10
 --- !u!114 &569818745
 MonoBehaviour:
   m_ObjectHideFlags: 0
