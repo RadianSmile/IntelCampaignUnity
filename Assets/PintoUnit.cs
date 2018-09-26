@@ -29,7 +29,7 @@ public class PintoUnit : MonoBehaviour {
         transform.position = p.position;
         Debug.Log(p.position);
         Debug.Log(Camera.main.pixelWidth);
-        Debug.Log(Camera.main.scaledPixelWidth);
+        Debug.Log(Camera.main);
     }
 
     public void EndDrag(BaseEventData baseEvent)
